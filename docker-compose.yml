@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+    db:
+        image: motorway-test-backend
+        container_name: motorway-test-backend
+        build:
+            context: ./docker/db
+            target: motorway-test-backend
+        environment:
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=motorway
+        ports:
+            - 5432:5432
