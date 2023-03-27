@@ -1,0 +1,13 @@
+{
+  "name": "motorway-tech-test",
+  "version": "1.0.0",
+  "description": "Senior Backend Engineer Tech Challenge For Motorway",
+  "main": "index.js",
+  "author": "Andrea Diotallevi <andrea.diotallevi@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sequelize": "^6.30.0"
+  }
+}
