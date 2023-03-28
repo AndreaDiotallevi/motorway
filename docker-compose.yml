@@ -5,7 +5,7 @@ services:
         container_name: motorway-test-backend
         build:
             context: ./docker/db
-            target: motorway-test-backend
+            dockerfile: Dockerfile
         environment:
             - POSTGRES_USER=user
             - POSTGRES_PASSWORD=password
@@ -19,3 +19,5 @@ services:
             dockerfile: ./docker/api/Dockerfile
         ports:
             - 3000:3000
+        depends_on:
+            - db
