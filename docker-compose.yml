@@ -17,6 +17,12 @@ services:
         build:
             context: .
             dockerfile: ./docker/api/Dockerfile
+        environment:
+            - DB_NAME=motorway
+            - DB_USER=user
+            - DB_HOST=db
+            - DB_DIALECT=postgres
+            - DB_PASSWORD=password
         ports:
             - 3000:3000
         depends_on:
