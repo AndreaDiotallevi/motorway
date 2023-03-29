@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize"
 import sequelize from "../config"
 
-const Vehicle = sequelize.define(
+export const Vehicle = sequelize.define(
     "vehicle",
     {
         id: {
@@ -27,5 +27,3 @@ const Vehicle = sequelize.define(
         tableName: "vehicles",
     }
 )
-
-export default Vehicle

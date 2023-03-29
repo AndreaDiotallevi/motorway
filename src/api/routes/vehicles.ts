@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express"
-import Vehicle from "../../db/models/Vehicle"
+import { Vehicle } from "../../db/models"
 // import * as vehicleController from "../controllers/vehicle"
 // import { CreateVehicleDTO, FilterVehiclesDTO, UpdateVehicleDTO } from "../dto/vehicle.dto"
 
