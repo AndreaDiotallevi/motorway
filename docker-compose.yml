@@ -4,7 +4,7 @@ services:
         image: motorway-test-backend
         container_name: motorway-test-backend
         build:
-            context: ./docker/db
+            context: ./src/db
             dockerfile: Dockerfile
         environment:
             - POSTGRES_USER=user
@@ -16,7 +16,7 @@ services:
         image: express-api
         build:
             context: .
-            dockerfile: ./docker/api/Dockerfile
+            dockerfile: ./src/api/Dockerfile
         environment:
             - DB_NAME=motorway
             - DB_USER=user
