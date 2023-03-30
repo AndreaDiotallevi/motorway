@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { getStateByVehicleIdAndTimestamp } from "../controllers"
+import { getVehicleByIdAndTimestamp } from "../controllers"
 
 const vehiclesRouter = Router()
 
-vehiclesRouter.get("/:vehicleId/timestamp/:timestamp", getStateByVehicleIdAndTimestamp)
+vehiclesRouter.get("/:vehicleId/timestamp/:timestamp", getVehicleByIdAndTimestamp)
 
 export default vehiclesRouter

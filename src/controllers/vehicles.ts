@@ -1,28 +1,28 @@
 import { Request, Response } from "express"
-import { getVehicleById, getStateLogsByVehicleId, getRelevantStateLogForTimestamp } from "../services"
+import { getVehicleById, getStateLogsByVehicleId, getStateLogForTimestamp } from "../services"
 
-export const getStateByVehicleIdAndTimestamp = async (req: Request, res: Response) => {
+export const getVehicleByIdAndTimestamp = async (req: Request, res: Response) => {
     const { vehicleId, timestamp } = req.params
 
     try {
-        const vehicle = await getVehicleById({ id: vehicleId })
+        const vehicle = await getVehicleById({ vehicleId })
 
         if (!vehicle) {
-            return res.status(404).send({ error: "Vehicle not found" })
+            return res.status(404).send({ error: "No vehicle with this id" })
         }
 
         const stateLogs = await getStateLogsByVehicleId({ vehicleId })
-        const relevantStateLog = await getRelevantStateLogForTimestamp({ stateLogs, timestamp })
+        const activeStateLog = getStateLogForTimestamp({ stateLogs, timestamp })
 
-        if (!relevantStateLog) {
-            return res.status(404).send({ error: "State log for this vehicle and timestamp not found" })
+        if (!activeStateLog) {
+            return res.status(404).send({ error: "No state log with vehicle id and timestamp" })
         }
 
-        res.sendStatus(200).send({ data: { ...vehicle.dataValues, state: relevantStateLog.state } })
+        res.json({ data: { vehicle: { ...vehicle.dataValues, state: activeStateLog.state } } })
     } catch (err) {
-        console.log("Error getting state by vehicle id and timestamp")
+        console.log("Error getting vehicle state for this timestamp")
         console.log(err)
 
-        res.sendStatus(500).send({ error: err })
+        res.status(500).send({ error: err })
     }
 }

@@ -10,22 +10,22 @@ export const getStateLogsByVehicleId = async ({
     return stateLogs
 }
 
-export const getRelevantStateLogForTimestamp = async ({
+export const getStateLogForTimestamp = ({
     stateLogs,
     timestamp,
 }: {
     stateLogs: StateLog[]
     timestamp: string
-}): Promise<StateLog | null> => {
+}): StateLog | null => {
     const date = new Date(timestamp)
 
-    stateLogs.reverse().forEach((stateLog) => {
+    for (const stateLog of stateLogs.reverse()) {
         const stateLogDate = new Date(stateLog.timestamp)
 
         if (date.getTime() >= stateLogDate.getTime()) {
             return stateLog
         }
-    })
+    }
 
     return null
 }
