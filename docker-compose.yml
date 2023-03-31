@@ -2,7 +2,7 @@ version: "3.7"
 services:
     db:
         image: motorway-test-backend
-        container_name: motorway-test-backend
+        container_name: db
         build:
             context: ./docker/db
             dockerfile: Dockerfile
@@ -10,8 +10,24 @@ services:
             - POSTGRES_USER=user
             - POSTGRES_PASSWORD=password
             - POSTGRES_DB=motorway
+        volumes:
+            - postgresdata-dev:/var/lib/postgresql/data
         ports:
             - 5432:5432
+    db-test:
+        image: motorway-test-backend
+        container_name: db-test
+        build:
+            context: ./docker/db
+            dockerfile: Dockerfile
+        environment:
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=motorway
+        volumes:
+            - postgresdata-test:/var/lib/postgresql/data
+        ports:
+            - 5430:5432
     api:
         image: express-api
         build:
@@ -21,11 +37,15 @@ services:
             - DB_NAME=motorway
             - DB_USER=user
             - DB_HOST=db
+            - DB_PORT=5432
             - DB_DIALECT=postgres
             - DB_PASSWORD=password
+            - DB_TEST_HOST=db-test
+            - NODE_ENV=development
         ports:
             - 3000:3000
-        # volumes:
-        #     - .:/app
         depends_on:
             - db
+volumes:
+    postgresdata-dev:
+    postgresdata-test:
