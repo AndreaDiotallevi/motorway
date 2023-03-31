@@ -1,7 +1,7 @@
-import { StateLogAttributes } from "../models"
-import { getStateLogForTimestamp } from "./stateLogs"
+import { StateLog } from "../models"
+import { getStateForTimestamp } from "./stateLogs"
 
-const stateLogs: StateLogAttributes[] = [
+const stateLogs: StateLog["dataValues"][] = [
     {
         id: 1,
         vehicleId: 3,
@@ -23,7 +23,7 @@ const stateLogs: StateLogAttributes[] = [
 ]
 
 it("should return the state log the vehicle was at the given timestamp", async () => {
-    const vehicle = getStateLogForTimestamp({ stateLogs, timestamp: "2022-09-12 10:00:00+00" })
+    const state = getStateForTimestamp({ stateLogs, timestamp: "2022-09-12 10:00:00+00" })
 
-    expect(vehicle?.state).toEqual("selling")
+    expect(state).toEqual("selling")
 })

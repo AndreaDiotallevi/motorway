@@ -1,29 +1,29 @@
-import { StateLog, StateLogAttributes } from "../models"
+import { StateLog } from "../models"
 
 export const getStateLogsByVehicleId = async ({
     vehicleId,
 }: {
     vehicleId: string
-}): Promise<StateLogAttributes[]> => {
+}): Promise<StateLog[]> => {
     const stateLogs = await StateLog.findAll({ where: { vehicleId } })
 
     return stateLogs
 }
 
-export const getStateLogForTimestamp = ({
+export const getStateForTimestamp = ({
     stateLogs,
     timestamp,
 }: {
-    stateLogs: StateLogAttributes[]
+    stateLogs: StateLog["dataValues"][]
     timestamp: string
-}): StateLogAttributes | null => {
+}): string | null => {
     const date = new Date(timestamp)
 
     for (const stateLog of stateLogs.reverse()) {
         const stateLogDate = new Date(stateLog.timestamp)
 
         if (date.getTime() >= stateLogDate.getTime()) {
-            return stateLog
+            return stateLog.state
         }
     }
 
