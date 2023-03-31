@@ -28,6 +28,12 @@ services:
             - postgresdata-test:/var/lib/postgresql/data
         ports:
             - 5430:5432
+    redis-cache:
+        image: redis
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        ports:
+            - 6379:6379
     api:
         image: express-api
         build:
@@ -42,10 +48,13 @@ services:
             - DB_PASSWORD=password
             - DB_TEST_HOST=db-test
             - NODE_ENV=development
+            - PORT=3000
         ports:
             - 3000:3000
         depends_on:
             - db
+            - db-test
+            - redis-cache
 volumes:
     postgresdata-dev:
     postgresdata-test:
