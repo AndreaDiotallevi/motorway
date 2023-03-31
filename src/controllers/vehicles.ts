@@ -21,7 +21,7 @@ export const getVehicleByIdAndTimestamp = async (req: Request, res: Response) =>
         res.json({ data: { vehicle: { ...vehicle.dataValues, state: activeStateLog.state } } })
     } catch (err) {
         console.log("Error getting vehicle state for this timestamp")
-        console.log(err)
+        console.error(err)
 
         res.status(500).send({ error: err })
     }
