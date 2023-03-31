@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { createClient } from "redis"
 
 export const redisClient = createClient({
-    url: "redis://default:password@redis-cache:6379",
+    url: `redis://${process.env.REDIS_DB_USER}:${process.env.REDIS_DB_PASSWORD}@${process.env.REDIS_DB_NAME}:${process.env.REDIS_DB_PORT}`,
 })
 
 redisClient.on("error", (err) => console.error("Redis Client Error", err))

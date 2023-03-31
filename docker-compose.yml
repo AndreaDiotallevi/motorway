@@ -31,7 +31,7 @@ services:
     redis-cache:
         image: redis
         environment:
-            - ALLOW_EMPTY_PASSWORD=yes
+            - REDIS_PASSWORD=password
         ports:
             - 6379:6379
     api:
@@ -49,6 +49,10 @@ services:
             - DB_TEST_HOST=db-test
             - NODE_ENV=development
             - PORT=3000
+            - REDIS_DB_NAME=redis-cache
+            - REDIS_DB_USER=default
+            - REDIS_DB_PORT=6379
+            - REDIS_DB_PASSWORD=password
         ports:
             - 3000:3000
         depends_on:
