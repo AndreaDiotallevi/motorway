@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize"
 import sequelize from "../configs/sequelize"
 
-interface StateLogAttributes {
+export interface StateLogAttributes {
     id: number
     vehicleId: number
     state: string

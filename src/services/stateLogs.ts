@@ -1,10 +1,10 @@
-import { StateLog } from "../models"
+import { StateLog, StateLogAttributes } from "../models"
 
 export const getStateLogsByVehicleId = async ({
     vehicleId,
 }: {
     vehicleId: string
-}): Promise<StateLog[]> => {
+}): Promise<StateLogAttributes[]> => {
     const stateLogs = await StateLog.findAll({ where: { vehicleId } })
 
     return stateLogs
@@ -14,9 +14,9 @@ export const getStateLogForTimestamp = ({
     stateLogs,
     timestamp,
 }: {
-    stateLogs: StateLog[]
+    stateLogs: StateLogAttributes[]
     timestamp: string
-}): StateLog | null => {
+}): StateLogAttributes | null => {
     const date = new Date(timestamp)
 
     for (const stateLog of stateLogs.reverse()) {
