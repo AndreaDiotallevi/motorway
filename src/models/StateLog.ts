@@ -1,22 +1,11 @@
-import { DataTypes, Model, Optional } from "sequelize"
+import { Model, InferAttributes, InferCreationAttributes, DataTypes } from "sequelize"
 import sequelize from "../configs/sequelize"
 
-export interface StateLogAttributes {
-    id: number
-    vehicleId: number
-    state: string
-    timestamp: string
-}
-
-export interface StateLogInput
-    extends Optional<StateLogAttributes, "id" | "vehicleId" | "state" | "timestamp"> {}
-export interface StateLogsOuput extends Required<StateLogAttributes> {}
-
-export class StateLog extends Model<StateLogAttributes, StateLogInput> implements StateLogAttributes {
-    public id!: number
-    public vehicleId!: number
-    public state!: string
-    public timestamp!: string
+export class StateLog extends Model<InferAttributes<StateLog>, InferCreationAttributes<StateLog>> {
+    declare id: number
+    declare vehicleId: number
+    declare state: string
+    declare timestamp: string
 }
 
 StateLog.init(

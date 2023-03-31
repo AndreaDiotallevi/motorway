@@ -1,21 +1,11 @@
-import { DataTypes, Model, Optional } from "sequelize"
+import { Model, InferAttributes, InferCreationAttributes, DataTypes } from "sequelize"
 import sequelize from "../configs/sequelize"
 
-interface VehicleAttributes {
-    id: number
-    make: string
-    model: string
-    state: string
-}
-
-export interface VehicleInput extends Optional<VehicleAttributes, "id" | "make" | "model" | "state"> {}
-export interface VehicleOuput extends Required<VehicleAttributes> {}
-
-export class Vehicle extends Model<VehicleAttributes, VehicleInput> implements VehicleAttributes {
-    public id!: number
-    public make!: string
-    public model!: string
-    public state!: string
+export class Vehicle extends Model<InferAttributes<Vehicle>, InferCreationAttributes<Vehicle>> {
+    declare id: number
+    declare make: string
+    declare model: string
+    declare state: string
 }
 
 Vehicle.init(
