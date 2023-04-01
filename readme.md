@@ -49,28 +49,55 @@ Imagine this API endpoint is in a production environment and can be hit multiple
 
 Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
 
-## 2. Initial thoughts
+## 2. Initial thoughts on the requirements
 
-#### 2.1 Technical requirements
+After reading the requirements mulitple times, I have started making some design considerations.
 
-#### 2.2 Motorway current technology stack [[link]](https://stackshare.io/motorway/core-platform)
+### 2.1 Postgres database running in Docker
 
-#### 2.3 Motorway company values [[link]](https://www.notion.so/Motorway-Product-Engineering-culture-guide-42f8aee810d74ad3a4496fca520ae147)
+Two options came to mind:
 
-#### 2.4 Time constraint
+1. A serverless application with Amazon RDS for PostgreSQL, fronted by a database proxy, with AWS Lambda and API Gateway
+2. A containerised application with services running in Docker containers
 
-The fact that I had a maximum of 7 days to complete the challenge made me approach the test in a more pragmatic way:
+The best database for serverless applications is DynamoDB, since it can scale infinitely as well as Lambda. RDS databases, on the other hand, are not designed to accept the same number of concurrent connections - needing a database proxy in front of them.
 
--   Focus on the big picture first
--   Have an idea of what I would like to achieve every day
-    -   Monday: call with Motorway internal recruiter
-    -   Tuesday:
+This is why I have chosen to go for a containerised approach, with services running in Docker containers.
+
+### 2.2 Build an API
+
+Three options came to mind:
+
+-   REST API with AWS API Gateway
+-   REST API with Express
+-   GraphQL API
+
+There were no requirements to justify going for a GraphQL API.
+
+Because of the same reason I have explained above, I have opted to avoid using API Gateway. As a Node.js server, I have chosen Express.js since it is already used at Motorway.
+
+### 2.2 Acceptable stale response by 1 minute
+
+Two options came to mind:
+
+-   Amazon DynamoDB Accelerator (DAX)
+-   Redis in-memory cache
+
+Since I am not going for a serverless approach, I have picked Redis, which is also a caching technology already used at Motorway.
+
+### 2.3 Reliability
+
+To ensure reliability, the application will need to be deployed to multiple availability zones.
+
+### 2.4 Concurrency
+
+Given the API endpoint is going to be hit by multiple users per seconds, the system needs to handle multiple instances running at the same time. This can be handled by horizontal scaling, using AWS autoscaling groups in tandem with a production process manager like pm2.
 
 ## 3. System design overview
 
 #### 3.1 Coding language
 
-I have used `TypeScript` because of:
+I have used `TypeScript` because of its:
 
 -   reliability
 -   productivity
@@ -109,17 +136,61 @@ _"Based on a vehicle id and a timestamp, returns a vehicle's information and the
 }
 ```
 
-#### 3.3 Caching
+#### 3.3 Server
 
-#### 3.4 Server
+Since Motorway already uses Express, I have implemented an `Express` server in Node.js and TypeScript. With `docker-compose` I have created a service called `api` that runs locally on port `3000`.
 
-#### 3.5 Database
+#### 3.4 Database
 
-#### 3.6 ORM
+Since the requirements contain a postgres database with seed data, I have created a `postgres` service with `docker-compose` named `db`.
 
-#### 3.7 Containerised applications
+#### 3.5 ORM
 
-#### 3.8 Serverless applications
+Although not a requirement, I have decided to experiment with `Sequelize`, since it's the ORM of choice used at Motorway. It's the first time I have used this, since at my current company we use Prisma.
+
+Following the postgres seed file, I have created two model classes: `Vehicle` and `StateLog`.
+
+#### 3.6 Caching
+
+The requirements states:
+
+_Imagine this API endpoint is in a production environment and can be hit multiple times a second. It’s acceptable that clients can get a response stale by 1 minute._
+
+The first thing that came to mind was caching. Since Motorway already uses `Redis` I have implemented a Redis service that stores the query response with a TTL of 1 minute.
+
+The principle is:
+
+-   The user makes an API request
+-   Does Redis contain the asking query?
+-   If yes, return that straight away
+-   If not, make the database queries and, before returning, save that in Redis with a key of `vehicleId + timestamp`
+
+```ts
+export const cacheData = async (req: Request, res: Response, next: NextFunction) => {
+    const { vehicleId, timestamp } = req.params
+    const cacheKey = vehicleId + timestamp
+
+    try {
+        const cacheData = await redisClient.get(cacheKey)
+
+        if (cacheData) {
+            const result = JSON.parse(cacheData)
+            res.send({ fromCache: true, data: result })
+        } else {
+            next()
+        }
+    } catch (error) {
+        console.log("Error getting data from the cache")
+        console.error(error)
+
+        res.status(404)
+    }
+}
+```
+
+#### 3.7 Containerised application?
+
+#### 3.8 Serverless application?
 
 ## 4. Architecture
 
@@ -178,3 +249,18 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 #### 9.1 I loved the challenge
 
 #### 9.2 I learned more about Motorway
+
+<!--
+#### 2.1 Technical requirements
+
+#### 2.2 Motorway current technology stack [[link]](https://stackshare.io/motorway/core-platform)
+
+#### 2.3 Motorway company values [[link]](https://www.notion.so/Motorway-Product-Engineering-culture-guide-42f8aee810d74ad3a4496fca520ae147)
+
+#### 2.4 Time constraint
+
+The fact that I had a maximum of 7 days to complete the challenge made me approach the test in a more pragmatic way:
+
+-   Focus on the big picture first
+-   Have an idea of what I would like to achieve every day
+-   Decribe what I would do if I had more time -->
