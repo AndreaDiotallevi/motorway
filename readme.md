@@ -23,23 +23,23 @@ Your task is to build an API with Node.js that, based on a vehicle id and a time
 
 For example, for the following `stateLogs`:
 
-```js
-;[
+```json
+[
     {
-        vehicleId: 3,
-        state: "quoted",
-        timestamp: "2022-09-11 09:11:45+00",
+        "vehicleId": 3,
+        "state": "quoted",
+        "timestamp": "2022-09-11 09:11:45+00"
     },
     {
-        vehicleId: 3,
-        state: "selling",
-        timestamp: "2022-09-11 23:21:38+00",
+        "vehicleId": 3,
+        "state": "selling",
+        "timestamp": "2022-09-11 23:21:38+00"
     },
     {
-        vehicleId: 3,
-        state: "sold",
-        timestamp: "2022-09-12 12:41:41+00",
-    },
+        "vehicleId": 3,
+        "state": "sold",
+        "timestamp": "2022-09-12 12:41:41+00"
+    }
 ]
 ```
 
