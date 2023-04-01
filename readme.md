@@ -81,7 +81,7 @@ RESTful API design principles:
 -   Since we want to return the state the vehicle was at a given timestamp, the url becomes: `vehicles/:vehicleId/timestamp/:timestamp`
 -   Since it is a query the HTTP method is **GET**
 
-![api example](./docs/api-example.png)
+![api example](./docs/api-example-query.png)
 
 ### 2.3 Accept stale response by 1 minute
 
