@@ -51,66 +51,66 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 2. Initial thoughts
 
-### 2.1 Technical requirements
+#### 2.1 Technical requirements
 
 Test text
 
-### 2.2 Motorway current technology stack
+#### 2.2 Motorway current technology stack
 
-### 2.3 Motorway company values
+#### 2.3 Motorway company values
 
-### 2.4 Time constraint
+#### 2.4 Time constraint
 
 ## 3. System design overview
 
-### 3.1 Coding language
+#### 3.1 Coding language
 
-### 3.2 API
+#### 3.2 API
 
-### 3.3 Caching
+#### 3.3 Caching
 
-### 3.4 Server
+#### 3.4 Server
 
-### 3.5 Database
+#### 3.5 Database
 
-### 3.6 ORM
+#### 3.6 ORM
 
-### 3.7 Containerised applications
+#### 3.7 Containerised applications
 
-### 3.8 Serverless applications
+#### 3.8 Serverless applications
 
 ## 4. Architecture
 
-### 4.1 Development
+#### 4.1 Development
 
-### 4.2 Production
+#### 4.2 Production
 
 ## 5. Testing
 
-### 5.1 Static linting
+#### 5.1 Static linting
 
-### 5.2 Unit testing
+#### 5.2 Unit testing
 
 ## 6 Deployment
 
-### 6.1 Environments
+#### 6.1 Environments
 
-### 6.2 Cloud provider
+#### 6.2 Cloud provider
 
-### 6.3 CI / CD pipelines
+#### 6.3 CI / CD pipelines
 
 ## 6. Technologies
 
 ## 7. What I would add if I had more time
 
-### 7.1 Infrastructure as code with Terraform
+#### 7.1 Infrastructure as code with Terraform
 
-### 7.2 Testing for API routers and controllers
+#### 7.2 Testing for API routers and controllers
 
-### 7.3 Different AWS account for each deployment environment
+#### 7.3 Different AWS account for each deployment environment
 
 ## 8. Takeways
 
-### 8.1 I loved the challenge
+#### 8.1 I loved the challenge
 
-### 8.2 I learned more about Motorway
+#### 8.2 I learned more about Motorway
