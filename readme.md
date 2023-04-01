@@ -61,7 +61,7 @@ The best database for serverless applications is DynamoDB, since it can scale in
 
 This is why I have chosen to go for a containerised approach, with services running in Docker containers.
 
-![docker diagram](./docs/docker-compose-logo.webp)
+![docker diagram](./docs/architecture-production-diagram.jpg)
 
 ### 2.2 Build an API
 
