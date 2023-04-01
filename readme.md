@@ -51,8 +51,12 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 2. Initial thoughts
 
--   2.1 Technical requirements
--   2.2 Motorway current technology stack
+### 2.1 Technical requirements
+
+Test text
+
+### 2.2 Motorway current technology stack
+
 -   2.3 Motorway company values
 -   2.4 Time constraint
 
@@ -87,4 +91,11 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 7. What I would add if I had more time
 
+-   7.1 Infrastructure as code with Terraform
+-   7.2 Testing for API routers and controllers
+-   7.3 Different AWS account for each deployment environment
+
 ## 8. Takeways
+
+-   8.1 I loved the challenge
+-   8.2 I learned more about Motorway
