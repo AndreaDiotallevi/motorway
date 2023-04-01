@@ -156,7 +156,7 @@ Locally the application runs in Docker. Docker compose is used to spin up 4 serv
 
 Unit tests can be run with the command: `npm test`
 
-![unit tests](./docs/unit-tests.png)
+![unit tests](./docs/unit-tests-watch.png)
 
 ## 5. Technologies used
 
