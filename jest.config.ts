@@ -9,7 +9,6 @@ const config: Config.InitialOptions = {
     },
     collectCoverage: true,
     coverageDirectory: "../coverage",
-    collectCoverageFrom: ["./src/**"],
 }
 
 export default config
