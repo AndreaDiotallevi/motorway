@@ -51,9 +51,11 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 2. Initial thoughts on the requirements
 
-After reading the requirements mulitple times, I have started making some design considerations.
+After reading the requirements multiple times, I have started making some design considerations.
 
 ### 2.1 Run postgres database in Docker
+
+> Inside this package, you will find a git project containing a Docker file that will bring up a Postgres database containing 2 tables: `vehicles` and `stateLogs`. These tables are already populated with some sample data.
 
 Two options came to mind:
 
@@ -66,6 +68,8 @@ This is why I have chosen to go for a containerised approach, with services runn
 
 ### 2.2 Build an API
 
+> Your task is to build an API with Node.js that, based on a vehicle id and a timestamp, returns a vehicle's information and the vehicle's state on the given timestamp.
+
 Three options came to mind:
 
 -   REST API with AWS API Gateway
@@ -76,7 +80,15 @@ There were no requirements to justify going for a GraphQL API.
 
 Because of the same reason I have explained above, I have opted to avoid using API Gateway. As a Node.js server, I have chosen Express.js since it is already used at Motorway.
 
+RESTful API design principles:
+
+-   Since the resource we want to return is a `Vehicle`, the url starts with the resource plural name and id parameter: `/vehicles/:vehicleId`
+-   Since we want to return the state the vehicle was at a given timestamp, the url becomes: `vehicles/:vehicleId/timestamp/:timestamp`
+-   Since it is a query the HTTP method is **GET**
+
 ### 2.3 Accept stale response by 1 minute
+
+> Imagine this API endpoint is in a production environment and can be hit multiple times a second. It’s acceptable that clients can get a response stale by 1 minute.
 
 Two options came to mind:
 
@@ -85,13 +97,20 @@ Two options came to mind:
 
 Since I am not going for a serverless approach, I have picked Redis, which is also a caching technology already used at Motorway.
 
+The principle is:
+
+-   The user makes an API request
+-   Does Redis contain the asking query?
+-   If yes, return that straight away
+-   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp`
+
 ### 2.4 Ensure reliability
 
-To ensure reliability, the application will need to be deployed in multiple availability zones.
+> Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
 
-### 2.5 Handle concurrent requests
+To ensure reliabity, the EC2 instances will need to deployed in multiple availability zones. Same for the application load balancer in front of them.
 
-Given the API endpoint is going to be hit by multiple users per seconds, the system needs to handle multiple instances running at the same time. This can be handled by horizontal scaling, using AWS autoscaling groups in tandem with a production process manager like pm2.
+To handle concurrent requests, we can leverage horizontal scalability with AWS autoscaling groups in tandem with a production process manager like pm2.
 
 ## 3. Architecture
 
