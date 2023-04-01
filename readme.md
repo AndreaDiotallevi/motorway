@@ -53,7 +53,7 @@ Please prepare your project as you would for a production environment, consideri
 
 After reading the requirements mulitple times, I have started making some design considerations.
 
-### 2.1 Postgres database running in Docker
+### 2.1 Run postgres database in Docker
 
 Two options came to mind:
 
@@ -76,7 +76,7 @@ There were no requirements to justify going for a GraphQL API.
 
 Because of the same reason I have explained above, I have opted to avoid using API Gateway. As a Node.js server, I have chosen Express.js since it is already used at Motorway.
 
-### 2.2 Acceptable stale response by 1 minute
+### 2.3 Accept stale response by 1 minute
 
 Two options came to mind:
 
@@ -85,13 +85,62 @@ Two options came to mind:
 
 Since I am not going for a serverless approach, I have picked Redis, which is also a caching technology already used at Motorway.
 
-### 2.3 Reliability
+### 2.4 Ensure reliability
 
-To ensure reliability, the application will need to be deployed to multiple availability zones.
+To ensure reliability, the application will need to be deployed in multiple availability zones.
 
-### 2.4 Concurrency
+### 2.5 Handle concurrent requests
 
 Given the API endpoint is going to be hit by multiple users per seconds, the system needs to handle multiple instances running at the same time. This can be handled by horizontal scaling, using AWS autoscaling groups in tandem with a production process manager like pm2.
+
+## 3. Architecture
+
+Locally the application runs in Docker. Docker compose is used to spin up 4 services: `api` (Express server), `db` (development postgres database), `db-test` (test postgres database) and `redis-cache` (caching database).
+
+1. Clone the repository and run `npm install`
+2. Then, run `docker-compose build` to build the Docker image
+3. Then, run `docker-compose up` to start up the services and seed the databases
+4. The server should be up and running at `http://localhost:3000/`
+5. Test the API endpoint with this query `http://localhost:3000/vehicles/2/timestamp/2022-09-19%2010:00:00+00`
+6. The first time, it should return this data
+
+```json
+{
+    "fromCache": false,
+    "data": {
+        "vehicle": {
+            "id": 2,
+            "make": "AUDI",
+            "model": "A4",
+            "state": "selling"
+        }
+    }
+}
+```
+
+7. The second time, it should return `"fromCache": true`
+
+```json
+{
+    "fromCache": true,
+    "data": {
+        "vehicle": {
+            "id": 2,
+            "make": "AUDI",
+            "model": "A4",
+            "state": "selling"
+        }
+    }
+}
+```
+
+<!--
+
+
+
+### 3.1 Development environment
+
+### 3.2 Production environment
 
 ## 3. System design overview
 
@@ -247,8 +296,8 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 ## 9. Takeways
 
 #### 9.1 I loved the challenge
-
-#### 9.2 I learned more about Motorway
+ -->
+<!-- #### 9.2 I learned more about Motorway -->
 
 <!--
 #### 2.1 Technical requirements
