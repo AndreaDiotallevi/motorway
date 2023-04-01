@@ -5,7 +5,7 @@ To initialize this project, run `docker compose up` from the root of this projec
 
 # Senior Backend Engineer Tech Challenge
 
-## Description
+## 1. Description
 
 Please download below the starter package to save you time with the basic setup of this challenge.
 
@@ -48,3 +48,27 @@ if the API receives the timestamp `2022-09-12 10:00:00+00`, the response is the 
 Imagine this API endpoint is in a production environment and can be hit multiple times a second. It’s acceptable that clients can get a response stale by 1 minute.
 
 Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
+
+## 2. Initial thoughts
+
+-   **2.1 Technical requirements**
+-   **2.2 Motorway technology stack**
+-   **2.3 Motorway company values**
+-   **2.4 Time constraint**
+
+## 3. System design brainstorming
+
+-   **3.1 Containerised**
+-   **3.2 Serverless**
+
+## 4. Architecture
+
+-   **4.1 Development**
+-   **4.2 Production**
+
+## 5. Testing
+
+-   **5.1 Static linting**
+-   **5.1 Unit testing**
+
+## 6. Technologies
