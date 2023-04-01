@@ -97,7 +97,7 @@ The principle is:
 -   The user makes an API request
 -   Does Redis contain the asking query?
 -   If yes, return that straight away
--   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp`
+-   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp` and TTL of 60 seconds
 
 ### 2.4 Ensure reliability
 
@@ -118,8 +118,8 @@ Locally the application runs in Docker. Docker compose is used to spin up 4 serv
 1. Clone the repository and run `npm install`
 2. Then, run `docker-compose build` to build the Docker image
 3. Then, run `docker-compose up` to start up the services and seed the databases
-4. The server should be up and running at `http://localhost:3000/`
-5. Test the API endpoint with this query `http://localhost:3000/vehicles/2/timestamp/2022-09-19%2010:00:00+00`
+4. The server should be up and running at [http://localhost:3000](http://localhost:3000)
+5. Test the API endpoint with this query [http://localhost:3000/vehicles/2/timestamp/2022-09-19%2010:00:00+00](http://localhost:3000/vehicles/2/timestamp/2022-09-19%2010:00:00+00)
 6. The first time, it should return this data
 
 ```json
@@ -149,6 +149,14 @@ Locally the application runs in Docker. Docker compose is used to spin up 4 serv
             "state": "selling"
         }
     }
+}
+```
+
+8. If the vehicle didn't exist for the given timestamp, it should return an error:
+
+```json
+{
+    "error": "Vehicle didn't exist at this timestamp"
 }
 ```
 

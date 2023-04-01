@@ -48,8 +48,6 @@ const config: Record<
 }
 
 const nodeEnv = process.env.NODE_ENV as NodeEnvironment
-console.log(nodeEnv)
-
 const { name, user, password, options } = config[nodeEnv]
 const sequelize = new Sequelize(name, user, password, options)
 
