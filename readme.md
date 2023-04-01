@@ -99,6 +99,8 @@ The principle is:
 -   If yes, return that straight away
 -   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp` and TTL of 60 seconds
 
+![redis cache](./docs/redis-cache.jpg)
+
 ### 2.4 Ensure reliability
 
 > Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
@@ -180,13 +182,13 @@ Development:
 -   Redis
 -   Docker
 
+I use all technologies above at my current job apart from Express, Sequelize and Redis, which I picked for personal learning and also because they are used at Motorway.
+
 Production (no implementation as of now):
 
 -   AWS Elastic Beanstalk
 -   Amazon ElastiCache for Redis
 -   Amazon Aurora PostgreSQL
-
-I use all technologies above at my current job apart from Express, Sequelize and Redis, which I picked for personal learning and also because they are used at Motorway.
 
 ## 6. CI / CD Pipelines
 
