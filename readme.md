@@ -152,10 +152,17 @@ Locally the application runs in Docker. Docker compose is used to spin up 4 serv
 }
 ```
 
-## 4. Technologies used
+### 4. Testing
+
+Unit tests can be run with the command: `npm test`
+
+![unit tests](./docs/unit-tests.png)
+
+## 5. Technologies used
 
 Development:
 
+-   ESLint
 -   TypeScript
 -   Node
 -   Jest
@@ -165,9 +172,15 @@ Development:
 -   Redis
 -   Docker
 
+Production (no implementation as of now):
+
+-   AWS Elastic Beanstalk
+-   Amazon ElastiCache for Redis
+-   Amazon Aurora PostgreSQL
+
 I use all technologies above at my current job apart from Express, Sequelize and Redis, which I picked for personal learning and also because they are used at Motorway.
 
-## 5. CI / CD Pipelines
+## 6. CI / CD Pipelines
 
 Pipelines are built with GitHub actions.
 
@@ -186,8 +199,9 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Wednesday 29th March
     -   Setup Sequelize models
     -   Configure environment variables to connect to databases
-    -   Design REST API
+    -   Design docker-compose to create development services
 -   Thursday 30th March
+    -   Design REST API
     -   Setup Jest testing
     -   Complete business logic and unit tests
 -   Friday 31st March
