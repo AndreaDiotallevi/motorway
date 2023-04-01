@@ -51,24 +51,40 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 2. Initial thoughts
 
--   **2.1 Technical requirements**
--   **2.2 Motorway technology stack**
--   **2.3 Motorway company values**
--   **2.4 Time constraint**
+-   2.1 Technical requirements
+-   2.2 Motorway current technology stack
+-   2.3 Motorway company values
+-   2.4 Time constraint
 
-## 3. System design brainstorming
+## 3. System design overview
 
--   **3.1 Containerised**
--   **3.2 Serverless**
+-   3.1 Coding language
+-   3.2 API
+-   3.3 Caching
+-   3.4 Server
+-   3.5 Database
+-   3.6 ORM
+-   3.7 Containerised applications
+-   3.8 Serverless applications
 
 ## 4. Architecture
 
--   **4.1 Development**
--   **4.2 Production**
+-   4.1 Development
+-   4.2 Production
 
 ## 5. Testing
 
--   **5.1 Static linting**
--   **5.1 Unit testing**
+-   5.1 Static linting
+-   5.2 Unit testing
+
+## 6 Deployment
+
+-   6.1 Environments
+-   6.2 Cloud provider
+-   6.3 CI / CD pipelines
 
 ## 6. Technologies
+
+## 7. What I would add if I had more time
+
+## 8. Takeways
