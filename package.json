@@ -9,7 +9,7 @@
         "dev": "ts-node-dev --transpile-only --no-notify src/index.ts",
         "start": "node dist/src/index.js",
         "test": "jest --watchAll --no-cache",
-        "test:ci": "jest",
+        "test:ci": "jest --coverage",
         "type-check": "tsc --noEmit --project './tsconfig.json'",
         "type-watch": "tsc --watch --noEmit --project './tsconfig.json'"
     },

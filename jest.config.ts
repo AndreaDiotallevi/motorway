@@ -7,6 +7,9 @@ const config: Config.InitialOptions = {
     transform: {
         "^.+\\.ts?$": ["ts-jest", { tsconfig: "./tsconfig.json" }],
     },
+    collectCoverage: true,
+    coverageDirectory: "../coverage",
+    collectCoverageFrom: ["./src/**"],
 }
 
 export default config
