@@ -61,6 +61,8 @@ The best database for serverless applications is DynamoDB, since it can scale in
 
 This is why I have chosen to go for a containerised approach, with services running in Docker containers.
 
+![docker diagram](./docs/docker-compose-logo.webp)
+
 ### 2.2 Build an API
 
 > Your task is to build an API with Node.js that, based on a vehicle id and a timestamp, returns a vehicle's information and the vehicle's state on the given timestamp.
