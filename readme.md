@@ -61,7 +61,7 @@ The best database for serverless applications is DynamoDB, since it can scale in
 
 This is why I have chosen to go for a containerised approach, with services running in Docker containers.
 
-![docker diagram](./docs/architecture-production-diagram.jpg)
+![docker diagram](./docs/docker-compose-logo.webp)
 
 ### 2.2 Build an API
 
@@ -111,11 +111,13 @@ The principle is:
 
 To make sure the application is of production grade, the application will be deployed using AWS Elastic Beanstalk, which is also already used at Motorway.
 
-To ensure reliabity, the EC2 instances and ALB will need to deployed in multiple availability zones.
+To ensure reliabity, the EC2 instances will need to deployed in multiple availability zones.
+
+To handle concurrent requests, EC2 instances will be wrapped in AWS autoscaling groups.
 
 PM2 will also be used to manage and daemonize applications (run them in the background as a service).
 
-To handle concurrent requests, EC2 instances will be wrapped in AWS autoscaling groups. In addition, a production process manager like pm2 will be used to handle monitoring.
+![docker diagram](./docs/architecture-production-diagram.jpg)
 
 ## 3. Installation
 
