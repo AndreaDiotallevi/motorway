@@ -255,9 +255,21 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 
 ## 8. What I would add if I had more time
 
--   Add load tests
--   Create different brances for staging and production deployments
--   Use infrastructure as code with Terraform
--   Add tests for API routes and controllers
--   Use different AWS account for each deployment environment
--   Add logging for production with [Winston](https://www.npmjs.com/package/winston)
+-   Development
+
+    -   Hot reload in docker-compose
+    -   Use infrastructure as code with Terraform
+
+-   Testing
+
+    -   Add tests for API routes and controllers
+    -   Add load tests for infrstructure provisioning
+
+-   Deployment
+
+    -   Use different AWS account for each deployment environment
+    -   Create different brances for staging and production deployments
+
+-   Monitoring
+
+    -   Add logging for production with [Winston](https://www.npmjs.com/package/winston)
