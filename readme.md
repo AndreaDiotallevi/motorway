@@ -207,14 +207,15 @@ Development:
 -   Sequelize
 -   Redis
 -   Docker
+-   PM2
 
 I use all technologies above at my current job apart from Express, Sequelize and Redis, which I picked for personal learning and also because they are used at Motorway.
 
-Production (no implementation as of now):
+<!-- Production (no implementation as of now):
 
 -   AWS Elastic Beanstalk
 -   Amazon ElastiCache for Redis
--   Amazon Aurora PostgreSQL
+-   Amazon Aurora PostgreSQL -->
 
 ## 6. CI / CD Pipelines
 
