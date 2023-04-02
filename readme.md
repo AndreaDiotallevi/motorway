@@ -103,6 +103,8 @@ The principle is:
 -   If yes, return that straight away
 -   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp` and TTL of 60 seconds
 
+Resource I used: [[link]](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
+
 ![redis cache](./docs/redis-cache.jpg)
 
 ### 2.4 Ensure reliability
