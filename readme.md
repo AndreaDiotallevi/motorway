@@ -124,8 +124,43 @@ Resource:
 To address the main requirements for a Node.js application running in production, we will use the most popular Node.js process manager: [PM2](https://pm2.keymetrics.io/).
 
 -   **Resiliency**: By default, PM2 instantly restarts any process that crashes, increasing resiliency. Although crashing in production is a serious matter, the auto-restart gives you a head start to fix the source of the crash, minimizing the impact on your customers.
+
+```js
+// ecosystem.config.js
+module.exports = [
+    {
+        script: "dist/src/index.js",
+        ...
+        autorestart: true, // default is true anyways
+    },
+]
+
+```
+
 -   **Utilizing the infrastructure**: PM2 abstracts away the Cluster Module, allowing for networked Node.js applications to scale to all available CPUs. A command line argument automatically creates as many processes as there are available CPU cores, load balancing the incoming network traffic between them.
+
+```js
+// ecosystem.config.js
+module.exports = [
+    {
+        ...
+        exec_mode: "cluster",
+        instances: "max",
+       ...
+    },
+]
+
+```
+
 -   **Monitoring**: PM2 provides a prebuilt application performance monitoring (APM) through the terminal and as a paid web service. You can access valuable information about the app services, like CPU, memory usage, request latency, and console logs.
+
+```shell
+docker-compose up
+docker-compose exec api sh
+pm2 monit
+```
+
+![pm2 monitoring](./docs/pm2-monitoring.png)
 
 <!-- To make sure the application is of production grade, the application will be deployed using AWS Elastic Beanstalk, which is also already used at Motorway.
 
