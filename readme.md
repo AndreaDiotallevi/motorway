@@ -61,7 +61,13 @@ The best database for serverless applications is DynamoDB, since it can scale in
 
 This is why I have chosen to go for a containerised approach, with services running in Docker containers.
 
-![docker diagram](./docs/docker-compose-logo.webp)
+![architecture](./docs/elastic-beanstalk.png)
+
+Resources:
+
+-   [Ultimate AWS Certified Solutions Architect Associate SAA-C03](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/) course on Udemy
+
+<!-- ![docker diagram](./docs/docker-compose-logo.webp) -->
 
 ### 2.2 Build an API
 
@@ -85,7 +91,7 @@ RESTful API design principles:
 
 ![api example](./docs/api-example-query.png)
 
-Resources I used:
+Resources:
 
 -   [Production best practices for Express apps: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html)
 
@@ -109,7 +115,7 @@ The principle is:
 
 ![redis cache](./docs/redis-cache.jpg)
 
-Resource I used:
+Resource:
 
 -   [How To Implement Caching in Node.js Using Redis](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
 
@@ -131,7 +137,7 @@ To handle concurren>t requests, EC2 instances will be wrapped in AWS autoscaling
 
 PM2 will also be used to manage and daemonize applications (run them in the background as a service). -->
 
-Resources I used:
+Resources:
 
 -   [PM2 Docker Integration](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/)
 -   [Best practices for Node.js process management with PM2](https://blog.logrocket.com/best-practices-nodejs-process-management-pm2/)
@@ -208,8 +214,6 @@ Development:
 -   Redis
 -   Docker
 -   PM2
-
-I use all technologies above at my current job apart from Express, Sequelize and Redis, which I picked for personal learning and also because they are used at Motorway.
 
 <!-- Production (no implementation as of now):
 
