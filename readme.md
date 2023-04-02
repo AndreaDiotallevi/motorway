@@ -103,7 +103,9 @@ The principle is:
 -   If yes, return that straight away
 -   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp` and TTL of 60 seconds
 
-Resource I used: [[link]](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
+Resource I used:
+
+-   [How To Implement Caching in Node.js Using Redis](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
 
 ![redis cache](./docs/redis-cache.jpg)
 
@@ -115,9 +117,14 @@ To make sure the application is of production grade, the application will be dep
 
 To ensure reliabity, the EC2 instances will need to deployed in multiple availability zones.
 
-To handle concurrent requests, EC2 instances will be wrapped in AWS autoscaling groups.
+To handle concurren>t requests, EC2 instances will be wrapped in AWS autoscaling groups.
 
 PM2 will also be used to manage and daemonize applications (run them in the background as a service).
+
+Resources I used:
+
+-   [PM2 Docker Integration](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/)
+-   [How To Set Up a Node.js Application for Production on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
 
 ![docker diagram](./docs/architecture-production-diagram.jpg)
 
