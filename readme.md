@@ -85,6 +85,10 @@ RESTful API design principles:
 
 ![api example](./docs/api-example-query.png)
 
+Resources I used:
+
+-   [Production best practices for Express apps: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html)
+
 ### 2.3 Accept stale response by 1 minute
 
 > Imagine this API endpoint is in a production environment and can be hit multiple times a second. It’s acceptable that clients can get a response stale by 1 minute.
@@ -103,30 +107,37 @@ The principle is:
 -   If yes, return that straight away
 -   If not, make the database queries and, before returning, save the API response in Redis with a key of `vehicleId + timestamp` and TTL of 60 seconds
 
+![redis cache](./docs/redis-cache.jpg)
+
 Resource I used:
 
 -   [How To Implement Caching in Node.js Using Redis](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
-
-![redis cache](./docs/redis-cache.jpg)
 
 ### 2.4 Ensure reliability
 
 > Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
 
-To make sure the application is of production grade, the application will be deployed using AWS Elastic Beanstalk, which is also already used at Motorway.
+To address the main requirements for a Node.js application running in production, we will use the most popular Node.js process manager: [PM2](https://pm2.keymetrics.io/).
+
+-   **Resiliency**: By default, PM2 instantly restarts any process that crashes, increasing resiliency. Although crashing in production is a serious matter, the auto-restart gives you a head start to fix the source of the crash, minimizing the impact on your customers.
+-   **Utilizing the infrastructure**: PM2 abstracts away the Cluster Module, allowing for networked Node.js applications to scale to all available CPUs. A command line argument automatically creates as many processes as there are available CPU cores, load balancing the incoming network traffic between them.
+-   **Monitoring**: PM2 provides a prebuilt application performance monitoring (APM) through the terminal and as a paid web service. You can access valuable information about the app services, like CPU, memory usage, request latency, and console logs.
+
+<!-- To make sure the application is of production grade, the application will be deployed using AWS Elastic Beanstalk, which is also already used at Motorway.
 
 To ensure reliabity, the EC2 instances will need to deployed in multiple availability zones.
 
 To handle concurren>t requests, EC2 instances will be wrapped in AWS autoscaling groups.
 
-PM2 will also be used to manage and daemonize applications (run them in the background as a service).
+PM2 will also be used to manage and daemonize applications (run them in the background as a service). -->
 
 Resources I used:
 
 -   [PM2 Docker Integration](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/)
+-   [Best practices for Node.js process management with PM2](https://blog.logrocket.com/best-practices-nodejs-process-management-pm2/)
 -   [How To Set Up a Node.js Application for Production on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
 
-![docker diagram](./docs/architecture-production-diagram.jpg)
+<!-- ![docker diagram](./docs/architecture-production-diagram.jpg) -->
 
 ## 3. Installation
 
@@ -238,7 +249,8 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 
 ## 8. What I would add if I had more time
 
--   Different brances for staging and production deployments
--   Infrastructure as code with Terraform
--   Testing API routes and controllers
--   Different AWS account for each deployment environment
+-   Add load tests
+-   Create different brances for staging and production deployments
+-   Use infrastructure as code with Terraform
+-   Add tests for API routes and controllers
+-   Use different AWS account for each deployment environment
