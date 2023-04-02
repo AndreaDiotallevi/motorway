@@ -155,7 +155,7 @@ module.exports = [
 -   **Monitoring**: PM2 provides a prebuilt application performance monitoring (APM) through the terminal and as a paid web service. You can access valuable information about the app services, like CPU, memory usage, request latency, and console logs.
 
 ```shell
-docker-compose up`
+docker-compose up
 docker-compose exec api sh
 pm2 monit
 ```
@@ -182,7 +182,12 @@ Resources:
 
 ## 3. Installation
 
-Locally the application runs in Docker. Docker compose is used to spin up 4 services: `api` (Express server), `db` (development postgres database), `db-test` (test postgres database) and `redis-cache` (caching database).
+Locally the application runs in Docker. Docker compose is used to spin up 4 services:
+
+-   `api` (Express server)
+-   `db` (development postgres database)
+-   `db-test` (test postgres database)
+-   `redis-cache` (caching database).
 
 ```docker
 version: "3.7"
