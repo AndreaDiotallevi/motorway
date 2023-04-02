@@ -3,13 +3,17 @@
     "version": "1.0.0",
     "description": "Senior Backend Engineer Tech Challenge For Motorway",
     "main": "index.js",
+    "lint-staged": {
+        "*.{js,ts}": "eslint"
+    },
     "scripts": {
         "build": "tsc -p .",
         "clean": "rm -rf ./dist/*",
         "test": "jest --watchAll --no-cache",
         "test:ci": "jest --coverage",
         "type-check": "tsc --noEmit --project './tsconfig.json'",
-        "type-watch": "tsc --watch --noEmit --project './tsconfig.json'"
+        "type-watch": "tsc --watch --noEmit --project './tsconfig.json'",
+        "lint-staged": "lint-staged"
     },
     "author": "Andrea Diotallevi",
     "license": "MIT",
@@ -26,11 +30,18 @@
         "@types/express": "^4.17.17",
         "@types/jest": "^29.5.0",
         "@types/node": "^18.15.10",
-        "eslint": "^8.36.0",
+        "@typescript-eslint/eslint-plugin": "^5.57.0",
+        "eslint": "^8.37.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-config-standard-with-typescript": "^34.0.1",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-n": "^15.7.0",
+        "eslint-plugin-promise": "^6.1.1",
         "jest": "^29.5.0",
+        "lint-staged": "^13.2.0",
         "nodemon": "^2.0.22",
         "ts-jest": "^29.0.5",
         "ts-node": "^10.9.1",
-        "typescript": "^5.0.2"
+        "typescript": "^5.0.3"
     }
 }
