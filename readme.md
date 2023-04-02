@@ -269,6 +269,7 @@ Unit tests can be run with the command: `npm test`
 
 Development:
 
+-   Prettier
 -   ESLint
 -   TypeScript
 -   Node
@@ -280,11 +281,11 @@ Development:
 -   Docker
 -   PM2
 
-<!-- Production (no implementation as of now):
+Production (no implementation as of now):
 
 -   AWS Elastic Beanstalk
 -   Amazon ElastiCache for Redis
--   Amazon Aurora PostgreSQL -->
+-   Amazon Aurora PostgreSQL
 
 ## 6. CI / CD Pipelines
 
