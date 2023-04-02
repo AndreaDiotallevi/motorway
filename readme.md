@@ -245,6 +245,7 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Saturday 1st April
     -   Write documentation
 -   Sunday 2nd April
+    -   Use PM2 to manage the application in production
 -   Monday 3rd April
 
 ## 8. What I would add if I had more time
