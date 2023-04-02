@@ -46,8 +46,6 @@ Please prepare your project as you would for a production environment, consideri
 
 ## 2. Initial thoughts on the requirements
 
-After reading the requirements multiple times, these are my design considerations.
-
 ### 2.1 Run postgres database in Docker
 
 > Inside this package, you will find a git project containing a Docker file that will bring up a Postgres database containing 2 tables: `vehicles` and `stateLogs`. These tables are already populated with some sample data.
@@ -93,7 +91,7 @@ RESTful API design principles:
 
 Resources:
 
--   [Production best practices for Express apps: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html)
+-   [RESTful web API design](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design) (Microsoft)
 
 ### 2.3 Accept stale response by 1 minute
 
@@ -142,6 +140,8 @@ Resources:
 -   [PM2 Docker Integration](https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/)
 -   [Best practices for Node.js process management with PM2](https://blog.logrocket.com/best-practices-nodejs-process-management-pm2/)
 -   [How To Set Up a Node.js Application for Production on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
+
+-   [Production best practices for Express apps: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html)
 
 <!-- ![docker diagram](./docs/architecture-production-diagram.jpg) -->
 
@@ -260,3 +260,4 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Use infrastructure as code with Terraform
 -   Add tests for API routes and controllers
 -   Use different AWS account for each deployment environment
+-   Add logging for production with [Winston](https://www.npmjs.com/package/winston)
