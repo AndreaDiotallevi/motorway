@@ -11,4 +11,5 @@ COPY --from=builder ./app/dist ./dist
 COPY package.json .
 COPY package-lock.json .
 RUN npm install --omit=dev
-CMD [ "npm", "start" ]
+RUN npm install pm2 -g
+CMD ["pm2-runtime", "dist/src/index.js"]
