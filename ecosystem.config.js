@@ -4,5 +4,6 @@ module.exports = [
         name: "app",
         exec_mode: "cluster",
         instances: "max",
+        autorestart: true,
     },
 ]
