@@ -1,7 +1,5 @@
 # Senior Backend Engineer Tech Challenge
 
-Table of contents:
-
 [1. Description](#1-description)
 
 [2. Initial thoughts on the requirements](#2-initial-thoughts-on-the-requirements)
