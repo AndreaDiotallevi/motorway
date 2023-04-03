@@ -40,6 +40,8 @@ services:
             context: .
             dockerfile: ./docker/api/Dockerfile
         environment:
+            - PORT=3000
+            - NODE_ENV=development
             - DB_NAME=motorway
             - DB_USER=user
             - DB_HOST=db
@@ -47,8 +49,6 @@ services:
             - DB_DIALECT=postgres
             - DB_PASSWORD=password
             - DB_TEST_HOST=db-test
-            - NODE_ENV=development
-            - PORT=3000
             - REDIS_DB_NAME=redis-cache
             - REDIS_DB_USER=default
             - REDIS_DB_PORT=6379
