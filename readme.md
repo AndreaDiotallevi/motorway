@@ -50,14 +50,49 @@ Please prepare your project as you would for a production environment, consideri
 
 > Inside this package, you will find a git project containing a Docker file that will bring up a Postgres database containing 2 tables: `vehicles` and `stateLogs`. These tables are already populated with some sample data.
 
+<!-- <table>
+  <tr>
+    <th>Option</th>
+    <th>Pros</th>
+    <th>Cons</th>
+  </tr>
+  <tr>
+    <td>Fully serverless application with API Gateway, Lambda and DynamoDB</td>
+    <td>
+        - Infinitely scalable<br />
+        - Inexpensive to deploy<br />
+        - Cloud native
+    </td>
+    <td>
+        - Challenge description asks to use Postgres (I could still use Postgres but I would need to add a database proxy to pool and share connections established with the database)<br />
+        - Challenge description asks to use Docker and Docker compose<br />
+    </td>
+  </tr>
+  <tr>
+    <td>Containerised application with services running in Docker containers</td>
+    <td>
+    - In line with challenge description<br />
+    </td>
+    <td>
+    - More expensive to deploy <br />
+    </td>
+  </tr>
+</table> -->
+
 Two options came to mind:
 
 1. A serverless application with Amazon RDS for PostgreSQL, fronted by a database proxy, with AWS Lambda and API Gateway
 2. A containerised application with services running in Docker containers
 
-The best database for serverless applications is DynamoDB, since it can scale infinitely as well as Lambda. RDS databases, on the other hand, are not designed to accept the same number of concurrent connections - needing a database proxy in front of them.
+The best database for serverless applications is DynamoDB, since it can scale infinitely as well as Lambda. RDS databases, on the other hand, are not designed to accept the same number of concurrent connections, and they need a proxy in front of them to pool and share connections established with the database.
 
-This is why I have chosen to go for a containerised approach, with services running in Docker containers.
+Since Postgres and Docker are mentioned in the test description, I have chosen to go for a containerised approach, with services running in Docker containers.
+
+-   In development: Docker Compose (as per test requirements)
+
+![architecture](./docs/docker-compose-diagram.jpg)
+
+-   In staging / production: Deploy to AWS (for instance with Elastic Beanstalk)
 
 ![architecture](./docs/elastic-beanstalk.png)
 
@@ -74,12 +109,15 @@ Resources:
 Three options came to mind:
 
 -   REST API with AWS API Gateway
--   REST API with Express
+-   REST API with Express.js
 -   GraphQL API
 
-There were no requirements to justify going for a GraphQL API.
+Since I have decided to go for the containerised approach, I excluded the API Gateway option. In addition, there were no special requirements for a GraphQL API.
 
-Because of the same reason I have explained above, I have opted to avoid using API Gateway. As a Node.js server, I have chosen Express.js since it is already used at Motorway.
+So, I have chosen to build a REST API with Express.js:
+
+-   lightweight framework for Node
+-   already used at Motorway
 
 RESTful API design principles:
 
@@ -100,6 +138,7 @@ Resources:
 Two options came to mind:
 
 -   Amazon DynamoDB Accelerator (DAX)
+-   Amazon DynamoDB using TTL
 -   Redis in-memory cache
 
 Since I am not going for a serverless approach, I have picked Redis, which is also a caching technology already used at Motorway.
@@ -161,6 +200,8 @@ pm2 monit
 ```
 
 ![pm2 monitoring](./docs/pm2-monitoring.png)
+
+In addition, high availability is ensured by deploying the application to multiple availability zones.
 
 <!-- To make sure the application is of production grade, the application will be deployed using AWS Elastic Beanstalk, which is also already used at Motorway.
 
@@ -279,6 +320,7 @@ Development:
 -   Sequelize
 -   Redis
 -   Docker
+-   Docker compose
 -   PM2
 
 Production (no implementation as of now):
@@ -291,7 +333,10 @@ Production (no implementation as of now):
 
 Pipelines are built with GitHub actions.
 
-So far, I have only built the `test` job.
+-   unit-tests
+-   push-image-to-docker-hub
+
+Next deployment steps not yet implemented.
 
 ## 7. Schedule
 
@@ -318,6 +363,7 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Sunday 2nd April
     -   Use PM2 to manage the application in production
 -   Monday 3rd April
+    -   Finilise readme
 
 ## 8. What I would add if I had more time
 
@@ -329,7 +375,7 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Testing
 
     -   Add tests for API routes and controllers
-    -   Add load tests for infrstructure provisioning
+    -   Add load tests for infrastructure provisioning
 
 -   Deployment
 
