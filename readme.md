@@ -117,12 +117,13 @@ Since I have decided to go for the containerised approach, I excluded the API Ga
 So, I have chosen to build a REST API with Express.js:
 
 -   lightweight framework for Node
+-   support for middlewares (like caching middleware)
 -   already used at Motorway
 
 RESTful API design principles:
 
--   Since the resource we want to return is a `Vehicle`, the url starts with the resource plural name and id parameter: `/vehicles/:vehicleId`
--   Since we want to return the state the vehicle was at a given timestamp, the url becomes: `vehicles/:vehicleId/timestamp/:timestamp`
+-   Since the resource I want to return is a `Vehicle`, the url starts with the resource plural name and id parameter: `/vehicles/:vehicleId`
+-   Since I want to return the state the vehicle was at a given timestamp, the url becomes: `vehicles/:vehicleId/timestamp/:timestamp`
 -   Since it is a query the HTTP method is **GET**
 
 ![api example](./docs/api-example-query.png)
@@ -141,7 +142,7 @@ Two options came to mind:
 -   Amazon DynamoDB using TTL
 -   Redis in-memory cache
 
-Since I am not going for a serverless approach, I have picked Redis, which is also a caching technology already used at Motorway.
+Since I have decided to not use DynamoDB, I have picked Redis, which is also a caching technology already used at Motorway.
 
 The principle is:
 
@@ -152,6 +153,8 @@ The principle is:
 
 ![redis cache](./docs/redis-cache.jpg)
 
+Note: another caching strategy could have been caching database queries rather than the whole request response.
+
 Resource:
 
 -   [How To Implement Caching in Node.js Using Redis](https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis)
@@ -160,7 +163,7 @@ Resource:
 
 > Please prepare your project as you would for a production environment, considering reliability (this app would run in multiple instances), and testing.
 
-To address the main requirements for a Node.js application running in production, we will use the most popular Node.js process manager: [PM2](https://pm2.keymetrics.io/).
+To address the main requirements for a Node.js application running in production, I used the most popular Node.js process manager: [PM2](https://pm2.keymetrics.io/).
 
 -   **Resiliency**: By default, PM2 instantly restarts any process that crashes, increasing resiliency. Although crashing in production is a serious matter, the auto-restart gives you a head start to fix the source of the crash, minimizing the impact on your customers.
 
@@ -323,7 +326,7 @@ Development:
 -   Docker compose
 -   PM2
 
-Production (no implementation as of now):
+Production (not implemented yet):
 
 -   AWS Elastic Beanstalk
 -   Amazon ElastiCache for Redis
@@ -363,7 +366,7 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Sunday 2nd April
     -   Use PM2 to manage the application in production
 -   Monday 3rd April
-    -   Finilise readme
+    -   Finalise readme
 
 ## 8. What I would add if I had more time
 
