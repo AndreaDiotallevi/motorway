@@ -1,5 +1,29 @@
 # Senior Backend Engineer Tech Challenge
 
+Table of contents:
+
+[1. Description](#1-description)
+
+[2. Initial thoughts on the requirements](#2-initial-thoughts-on-the-requirements)
+
+-   [2.2 Build an API](#22-build-an-api)
+
+-   [2.3 Accept stale response by 1 minute](#23-accept-stale-response-by-1-minute)
+
+-   [2.4 Ensure reliability](#24-ensure-reliability)
+
+[3. Installation](#3-installation)
+
+[4. Testing](#4-testing)
+
+[5. Technologies used](#5-technologies-used)
+
+[6. CI / CD Pipelines](#6-ci--cd-pipelines)
+
+[7. Schedule](#7-schedule)
+
+[8. What to do next](#8-what-to-do-next)
+
 ## 1. Description
 
 Please download below the starter package to save you time with the basic setup of this challenge.
@@ -336,8 +360,10 @@ Production (not implemented yet):
 
 Pipelines are built with GitHub actions.
 
--   unit-tests
--   push-image-to-docker-hub
+-   Unit Tests
+-   Push Image to Docker Hub
+
+![pipelines](./docs/pipelines.png)
 
 Next deployment steps not yet implemented.
 
@@ -368,7 +394,7 @@ I have worked on this tech test roughly 1 - 2 hours a day in the evenings.
 -   Monday 3rd April
     -   Finalise readme
 
-## 8. What I would add if I had more time
+## 8. What to do next
 
 -   Development
 
