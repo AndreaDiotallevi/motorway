@@ -23,13 +23,37 @@ const stateLogs: StateLog["dataValues"][] = [
 ]
 
 it("should return the state the vehicle was at the given timestamp", async () => {
-    const state = getStateForTimestamp({ stateLogs, timestamp: "2022-09-12 10:00:00+00" })
+    const state = getStateForTimestamp({
+        stateLogs: [...stateLogs],
+        timestamp: "2022-09-11 10:00:00+00",
+    })
+
+    expect(state).toEqual("quoted")
+})
+
+it("should return the state the vehicle was at the given timestamp", async () => {
+    const state = getStateForTimestamp({
+        stateLogs: [...stateLogs],
+        timestamp: "2022-09-12 10:00:00+00",
+    })
 
     expect(state).toEqual("selling")
 })
 
+it("should return the state the vehicle was at the given timestamp", async () => {
+    const state = getStateForTimestamp({
+        stateLogs: [...stateLogs],
+        timestamp: "2022-09-12 13:00:00+00",
+    })
+
+    expect(state).toEqual("sold")
+})
+
 it("should return 'null' if the vehicle didn't exist at the given timestamp", async () => {
-    const state = getStateForTimestamp({ stateLogs, timestamp: "2021-09-12 10:00:00+00" })
+    const state = getStateForTimestamp({
+        stateLogs: [...stateLogs],
+        timestamp: "2021-09-12 10:00:00+00",
+    })
 
     expect(state).toEqual(null)
 })
