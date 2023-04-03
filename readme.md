@@ -4,6 +4,8 @@
 
 [2. Initial thoughts on the requirements](#2-initial-thoughts-on-the-requirements)
 
+-   [2.1 Run postgres database in Docker](#21-run-postgres-database-in-docker)
+
 -   [2.2 Build an API](#22-build-an-api)
 
 -   [2.3 Accept stale response by 1 minute](#23-accept-stale-response-by-1-minute)
